@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class TurretSubsystem extends SubsystemBase {
-    private DcMotorEx turretMotor;
+    private final DcMotorEx turretMotor;
     public TurretSubsystem(final HardwareMap hwMap, final String name) {
         turretMotor = hwMap.get(DcMotorEx.class, name);
     }
@@ -15,15 +15,19 @@ public class TurretSubsystem extends SubsystemBase {
     private final double ki = 0;
     private final double kd = 0;
     private final double kf = 0;
-    private PIDFController pid = new PIDFController(kp, ki, kd, kf);
+    private final PIDFController pid = new PIDFController(kp, ki, kd, kf);
 
     private double degreesToTicks(double degrees) {
         double encoderResolution = 537.7;
         return encoderResolution * degrees / 360.0;
     }
 
-    public void spinTo(double degrees) {
+    public void setReference(double degrees) {
         pid.setSetPoint(degreesToTicks(degrees));
+    }
+
+    public boolean atReference() {
+        return pid.atSetPoint();
     }
 
 
@@ -32,4 +36,6 @@ public class TurretSubsystem extends SubsystemBase {
         double encoderPosition = turretMotor.getCurrentPosition();
         turretMotor.setPower(pid.calculate(encoderPosition));
     }
+
+
 }
