@@ -2,14 +2,15 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.common.subsystems.Drivetrain;
 
 import java.util.List;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "armata moldovei")
-public class TeleOp extends OpMode {
+@TeleOp(name = "armata moldovei")
+public class Teleop extends OpMode {
     private Drivetrain drive;
     private DcMotorEx intake;
 

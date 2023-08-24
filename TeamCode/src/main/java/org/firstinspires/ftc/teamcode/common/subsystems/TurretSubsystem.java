@@ -1,21 +1,24 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.common.subsystems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Turret extends SubsystemBase {
+public class TurretSubsystem extends SubsystemBase {
     private DcMotorEx turretMotor;
-    public Turret(final HardwareMap hwMap, final String name) {
+    public TurretSubsystem(final HardwareMap hwMap, final String name) {
         turretMotor = hwMap.get(DcMotorEx.class, name);
     }
 
-    private final double kp = 0, ki = 0, kd = 0, kf = 0;
+    private final double kp = 0;
+    private final double ki = 0;
+    private final double kd = 0;
+    private final double kf = 0;
     private PIDFController pid = new PIDFController(kp, ki, kd, kf);
 
-    private final double encoderResolution = 537.7;
     private double degreesToTicks(double degrees) {
+        double encoderResolution = 537.7;
         return encoderResolution * degrees / 360.0;
     }
 

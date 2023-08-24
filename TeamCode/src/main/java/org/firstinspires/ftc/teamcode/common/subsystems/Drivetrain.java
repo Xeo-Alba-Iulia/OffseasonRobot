@@ -1,15 +1,11 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.common.subsystems;
 
 
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Drivetrain {
 
@@ -20,7 +16,6 @@ public class Drivetrain {
     DcMotor motorFrontRight;
     DcMotor motorBackRight;
 
-    IMU imu;
 
 
     public Drivetrain(HardwareMap hwMap) {
