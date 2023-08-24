@@ -9,7 +9,6 @@ public class TurnToScore extends CommandBase {
     private final double ShootingPosition = 270.0;
     public TurnToScore(TurretSubsystem turret) {
         this.turret = turret;
-        addRequirements(turret);
     }
 
     @Override

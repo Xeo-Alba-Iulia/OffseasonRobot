@@ -14,10 +14,6 @@ public class Teleop extends OpMode {
     private Drivetrain drive;
     private DcMotorEx intake;
 
-    boolean currentA;
-    boolean lastA;
-    boolean intakeToggle;
-
     @Override
     public void init() {
         drive = new Drivetrain(hardwareMap);
@@ -28,23 +24,8 @@ public class Teleop extends OpMode {
         }
     }
 
-    public void intake() {
-        lastA = currentA;
-        currentA = gamepad1.a;
-        if (currentA) {
-            intakeToggle = !intakeToggle;
-            if (intakeToggle) {
-                intake.setPower(0);
-            } else {
-                intake.setPower(1);
-            }
-        }
-    }
-
-
     @Override
     public void loop() {
 //        drive.update(gamepad1);
-        intake();
     }
 }
