@@ -6,15 +6,16 @@ import org.firstinspires.ftc.teamcode.common.subsystems.TurretSubsystem;
 
 public class TurnToScore extends CommandBase {
     private final TurretSubsystem turret;
-    private final double ShootingPosition = 270.0;
-    public TurnToScore(TurretSubsystem turret) {
-        this.turret = turret;
-        addRequirements(turret);
+
+    public TurnToScore(TurretSubsystem subsystem) {
+        this.turret = subsystem;
+        addRequirements(subsystem);
     }
 
     @Override
     public void initialize() {
-        turret.setReference(ShootingPosition);
+        double shootingPosition = 270.0;
+        turret.setReference(shootingPosition);
     }
 
     @Override
