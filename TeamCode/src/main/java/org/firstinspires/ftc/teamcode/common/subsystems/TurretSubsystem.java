@@ -30,9 +30,9 @@ public class TurretSubsystem extends SubsystemBase {
         return pid.atSetPoint();
     }
 
-    private double degreesToTicks(double degrees) {
+    private int degreesToTicks(double degrees) {
         double encoderResolution = 537.7;
-        return encoderResolution * degrees / 360.0;
+        return (int) (encoderResolution * degrees / 360.0);
     }
 
 
