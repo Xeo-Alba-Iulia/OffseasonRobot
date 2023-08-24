@@ -10,9 +10,16 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor = hwMap.get(DcMotorEx.class, name);
     }
 
-    public void rotate() {
+    public void runIntake() {
         intakeMotor.setPower(1);
     }
 
+    public void stopIntake() {
+        intakeMotor.setPower(0);
+    }
+
+    public void reverseIntake(){
+        intakeMotor.setPower(-1);
+    }
 
 }
