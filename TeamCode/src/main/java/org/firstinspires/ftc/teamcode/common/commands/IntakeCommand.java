@@ -4,16 +4,19 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.common.subsystems.IntakeSubsystem;
 
-public class RotateIntakeCommand extends CommandBase {
+public class IntakeCommand extends CommandBase {
     private final IntakeSubsystem intakeSubsystem;
-    public RotateIntakeCommand(IntakeSubsystem subsystem) {
+    public IntakeCommand(IntakeSubsystem subsystem) {
         intakeSubsystem = subsystem;
         addRequirements(subsystem);
     }
 
     @Override
     public void initialize() {
-        intakeSubsystem.rotate();
+        intakeSubsystem.runIntake();
+        intakeSubsystem.stopIntake();
+        intakeSubsystem.reverseIntake();
+
     }
 
     @Override
