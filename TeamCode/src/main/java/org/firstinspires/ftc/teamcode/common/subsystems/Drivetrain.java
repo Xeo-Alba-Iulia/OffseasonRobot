@@ -40,6 +40,7 @@ public class Drivetrain {
     }
 
     public void update(Gamepad gamepad1) {
+
         double drive = -gamepad1.left_stick_y; // Remember, this is reversed!
         double strafe = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
         double turn = gamepad1.right_stick_x;
@@ -48,6 +49,7 @@ public class Drivetrain {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(drive) + Math.abs(strafe) + Math.abs(turn), 1);
+
         double frontLeftPower = (drive + strafe + turn) / denominator;
         double backLeftPower = (drive - strafe + turn) / denominator;
         double frontRightPower = (drive - strafe - turn ) / denominator;

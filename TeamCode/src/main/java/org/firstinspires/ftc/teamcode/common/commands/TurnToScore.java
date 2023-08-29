@@ -20,6 +20,7 @@ public class TurnToScore extends CommandBase {
 
     @Override
     public boolean isFinished() {
+
         return turret.atReference();
     }
 
