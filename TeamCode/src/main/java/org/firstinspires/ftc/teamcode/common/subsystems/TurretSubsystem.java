@@ -20,6 +20,7 @@ public class TurretSubsystem extends SubsystemBase {
     private final double ki = 0;
     private final double kd = 0;
     private final double kf = 0;
+
     private final PIDFController pid = new PIDFController(kp, ki, kd, kf);
 
     public void setReference(double degrees) {

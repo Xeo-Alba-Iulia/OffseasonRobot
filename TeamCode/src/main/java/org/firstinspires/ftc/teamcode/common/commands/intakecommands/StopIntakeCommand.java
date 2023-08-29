@@ -1,21 +1,21 @@
-package org.firstinspires.ftc.teamcode.common.commands;
+package org.firstinspires.ftc.teamcode.common.commands.intakecommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.common.subsystems.IntakeSubsystem;
 
-public class IntakeCommand extends CommandBase {
+public class StopIntakeCommand extends CommandBase {
     private final IntakeSubsystem intakeSubsystem;
-    public IntakeCommand(IntakeSubsystem intakeSubsystem) {
+    public StopIntakeCommand(IntakeSubsystem intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
         addRequirements(intakeSubsystem);
     }
 
     public void initialize() {
-        intakeSubsystem.runIntake();
+        intakeSubsystem.stopIntake();
     }
 
     public boolean isFinished() {
-            return true;
+        return true;
     }
 }
