@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.common.subsystems;
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.geometry.Vector2d;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.common.Constants;
-
+@Config
 public class TurretSubsystem extends SubsystemBase {
     private final DcMotorEx turretMotor;
 
@@ -33,7 +34,7 @@ public class TurretSubsystem extends SubsystemBase {
     /**
      * Sets the target position for the turret's PID controller
      *
-     * @param position Position to go to in radians
+     * @param position Position to go to in degrees
      */
     public void setReference(double position) {
         pid.setSetPoint(degreesToTicks(position));
