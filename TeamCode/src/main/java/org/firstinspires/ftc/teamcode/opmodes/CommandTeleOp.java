@@ -18,41 +18,27 @@ import org.firstinspires.ftc.teamcode.common.subsystems.IntakeSubsystem;
 @TeleOp(name = "comanda")
 public class CommandTeleOp extends CommandOpMode {
 
-
-
-
     @Override
     public void initialize() {
-        MotorEx frontLeft, frontRight, backLeft, backRight;
-        DriveSubsystem drive;
-        DrivetrainCommand driveCommand;
-        Motor intakeMotor;
-        IntakeSubsystem intake;
-        SpinIntakeCommand spinIntake;
-        StopIntakeCommand stopIntake;
-        GamepadEx driverOp, systemOp;
-         Button intakeButton;
-        frontLeft = new MotorEx(hardwareMap, "MotorFrontLeft", Motor.GoBILDA.RPM_435);
-        frontRight = new MotorEx(hardwareMap, "MotorFrontRight", Motor.GoBILDA.RPM_435);
-        backLeft = new MotorEx(hardwareMap, "MotorBackLeft", Motor.GoBILDA.RPM_435);
-        backRight = new MotorEx(hardwareMap, "MotorBackRight", Motor.GoBILDA.RPM_435);
+        MotorEx frontLeft = new MotorEx(hardwareMap, "MotorFrontLeft", Motor.GoBILDA.RPM_435);
+        MotorEx frontRight = new MotorEx(hardwareMap, "MotorFrontRight", Motor.GoBILDA.RPM_435);
+        MotorEx backLeft = new MotorEx(hardwareMap, "MotorBackLeft", Motor.GoBILDA.RPM_435);
+        MotorEx backRight = new MotorEx(hardwareMap, "MotorBackRight", Motor.GoBILDA.RPM_435);
 
-        drive = new DriveSubsystem(frontLeft, frontRight, backLeft, backRight);
+        DriveSubsystem drive = new DriveSubsystem(frontLeft, frontRight, backLeft, backRight);
 
-        intakeMotor = new Motor(hardwareMap, "intake", Motor.GoBILDA.BARE);
-        intake = new IntakeSubsystem(intakeMotor);
-        spinIntake = new SpinIntakeCommand(intake);
-        stopIntake = new StopIntakeCommand(intake);
+        Motor intakeMotor = new Motor(hardwareMap, "intake", Motor.GoBILDA.BARE);
+        IntakeSubsystem intake = new IntakeSubsystem(intakeMotor);
+        SpinIntakeCommand spinIntake = new SpinIntakeCommand(intake);
+        StopIntakeCommand stopIntake = new StopIntakeCommand(intake);
 
 
-
-        driverOp = new GamepadEx(gamepad1);
-        systemOp = new GamepadEx(gamepad2);
-        intakeButton = new GamepadButton(driverOp, GamepadKeys.Button.A);
+        GamepadEx driverOp = new GamepadEx(gamepad1);
+        Button intakeButton = new GamepadButton(driverOp, GamepadKeys.Button.A);
 
         intakeButton.toggleWhenPressed(spinIntake, stopIntake);
 
-        driveCommand = new DrivetrainCommand(drive,
+        DrivetrainCommand driveCommand = new DrivetrainCommand(drive,
                 driverOp::getLeftY,
                 driverOp::getLeftX,
                 driverOp::getRightX);
