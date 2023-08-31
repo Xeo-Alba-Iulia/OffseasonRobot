@@ -10,6 +10,7 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem(MotorEx frontLeftMotor, MotorEx frontRightMotor,
                           MotorEx backLeftMotor, MotorEx backRightMotor) {
         drivetrain = new MecanumDrive(true, frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
+        register();
 
     }
 

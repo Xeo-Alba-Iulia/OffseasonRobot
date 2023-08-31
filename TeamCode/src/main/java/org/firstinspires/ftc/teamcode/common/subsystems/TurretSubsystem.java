@@ -12,14 +12,15 @@ public class TurretSubsystem extends SubsystemBase {
     public TurretSubsystem(@NonNull final HardwareMap hwMap, final String name) {
         turretMotor = hwMap.get(DcMotorEx.class, name);
         turretMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        double tolerance = 50;
         pid.setTolerance(tolerance);
+        register();
     }
 
-    private final double kp = 0;
-    private final double ki = 0;
-    private final double kd = 0;
-    private final double kf = 0;
+    public static double kp = 0;
+    public static double ki = 0;
+    public static double kd = 0;
+    public static double kf = 0;
+    public static double tolerance = 0;
 
     private final PIDFController pid = new PIDFController(kp, ki, kd, kf);
 

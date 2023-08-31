@@ -9,6 +9,7 @@ public class IntakeSubsystem extends SubsystemBase {
         this.intakeMotor = intakeMotor;
         intakeMotor.setInverted(true);
         intakeMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        register();
 
     }
 
