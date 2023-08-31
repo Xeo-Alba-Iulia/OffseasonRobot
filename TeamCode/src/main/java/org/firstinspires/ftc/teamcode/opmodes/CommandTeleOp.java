@@ -6,13 +6,10 @@ import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
-import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.common.commands.DrivetrainCommand;
 import org.firstinspires.ftc.teamcode.common.commands.intakecommands.SpinIntakeCommand;
 import org.firstinspires.ftc.teamcode.common.commands.intakecommands.StopIntakeCommand;
-import org.firstinspires.ftc.teamcode.common.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.common.subsystems.IntakeSubsystem;
 
 @TeleOp(name = "comanda")
@@ -20,12 +17,12 @@ public class CommandTeleOp extends CommandOpMode {
 
     @Override
     public void initialize() {
-        MotorEx frontLeft = new MotorEx(hardwareMap, "MotorFrontLeft", Motor.GoBILDA.RPM_435);
-        MotorEx frontRight = new MotorEx(hardwareMap, "MotorFrontRight", Motor.GoBILDA.RPM_435);
-        MotorEx backLeft = new MotorEx(hardwareMap, "MotorBackLeft", Motor.GoBILDA.RPM_435);
-        MotorEx backRight = new MotorEx(hardwareMap, "MotorBackRight", Motor.GoBILDA.RPM_435);
-
-        DriveSubsystem drive = new DriveSubsystem(frontLeft, frontRight, backLeft, backRight);
+//        MotorEx frontLeft = new MotorEx(hardwareMap, "MotorFrontLeft", Motor.GoBILDA.RPM_435);
+//        MotorEx frontRight = new MotorEx(hardwareMap, "MotorFrontRight", Motor.GoBILDA.RPM_435);
+//        MotorEx backLeft = new MotorEx(hardwareMap, "MotorBackLeft", Motor.GoBILDA.RPM_435);
+//        MotorEx backRight = new MotorEx(hardwareMap, "MotorBackRight", Motor.GoBILDA.RPM_435);
+//
+//        DriveSubsystem drive = new DriveSubsystem(frontLeft, frontRight, backLeft, backRight);
 
         Motor intakeMotor = new Motor(hardwareMap, "intake", Motor.GoBILDA.BARE);
         IntakeSubsystem intake = new IntakeSubsystem(intakeMotor);
@@ -34,18 +31,18 @@ public class CommandTeleOp extends CommandOpMode {
 
 
         GamepadEx driverOp = new GamepadEx(gamepad1);
+        GamepadEx toolsOp = new GamepadEx(gamepad2);
         Button intakeButton = new GamepadButton(driverOp, GamepadKeys.Button.A);
 
         intakeButton.toggleWhenPressed(spinIntake, stopIntake);
 
-        DrivetrainCommand driveCommand = new DrivetrainCommand(drive,
-                driverOp::getLeftY,
-                driverOp::getLeftX,
-                driverOp::getRightX);
+//        DrivetrainCommand driveCommand = new DrivetrainCommand(drive,
+//                driverOp::getLeftY,
+//                driverOp::getLeftX,
+//                driverOp::getRightX);
 
 
-        register(drive);
-        drive.setDefaultCommand(driveCommand);
+//        drive.setDefaultCommand(driveCommand);
 
     }
 }
