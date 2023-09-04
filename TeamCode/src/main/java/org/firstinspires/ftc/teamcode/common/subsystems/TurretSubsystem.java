@@ -5,23 +5,23 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
-import com.arcrobotics.ftclib.geometry.Vector2d;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.arcrobotics.ftclib.geometry.Pose2d;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.teamcode.common.Constants;
 @Config
 public class TurretSubsystem extends SubsystemBase {
-    private final DcMotorEx turretMotor;
+    private final MotorEx turretMotor;
 
-    public TurretSubsystem(@NonNull final HardwareMap hwMap, final String name) {
-        turretMotor = hwMap.get(DcMotorEx.class, name);
-        turretMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    public TurretSubsystem(@NonNull MotorEx turretMotor) {
+        this.turretMotor = turretMotor;
+        turretMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         pid.setTolerance(tolerance);
         register();
     }
 
-    public static double TURRET_RATIO = 0.0625; // 1.0 / 16.0 TODO Calculate Turret Ratio
+    public static double TURRET_RATIO = 0.5; // 1.0 / 16.0 TODO Calculate Turret Ratio
 
     public static double kp = 0;
     public static double ki = 0;
@@ -36,7 +36,7 @@ public class TurretSubsystem extends SubsystemBase {
      *
      * @param position Position to go to in degrees
      */
-    public void setReference(double position) {
+    public final void setReference(double position) {
         pid.setSetPoint(degreesToTicks(position));
     }
 
@@ -45,22 +45,21 @@ public class TurretSubsystem extends SubsystemBase {
     }
 
 
-
-    private double getAngleToBin(Vector2d robotPose) {
+    private double getAngleToBin(@NonNull Pose2d robotPose) {
         double destinationAngle = Math.atan2(Constants.BIN_POSITION.getX() - robotPose.getX(),
                 Constants.BIN_POSITION.getY() - robotPose.getY());
-        return destinationAngle - robotPose.angle();
+        return destinationAngle - robotPose.getHeading();
     }
 
 
-    public void updateAutoTrack(Vector2d robotPose) {
+    public void updateAutoTrack(Pose2d robotPose) {
         double angle = getAngleToBin(robotPose);
         setReference(angle);
         updateController();
     }
 
     private void updateController() {
-        turretMotor.setPower(pid.calculate());
+        turretMotor.set(pid.calculate());
     }
 
 
