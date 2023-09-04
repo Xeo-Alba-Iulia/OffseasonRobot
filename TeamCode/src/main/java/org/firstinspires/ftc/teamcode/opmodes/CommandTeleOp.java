@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.common.commands.intakecommands.SpinIntakeCommand;
 import org.firstinspires.ftc.teamcode.common.commands.intakecommands.StopIntakeCommand;
 import org.firstinspires.ftc.teamcode.common.subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.common.subsystems.OdometrySubsystem;
 
 @TeleOp(name = "comanda")
 public class CommandTeleOp extends CommandOpMode {
@@ -30,6 +31,7 @@ public class CommandTeleOp extends CommandOpMode {
         StopIntakeCommand stopIntake = new StopIntakeCommand(intake);
 
 
+
         GamepadEx driverOp = new GamepadEx(gamepad1);
         GamepadEx toolsOp = new GamepadEx(gamepad2);
         Button intakeButton = new GamepadButton(driverOp, GamepadKeys.Button.A);
@@ -43,6 +45,5 @@ public class CommandTeleOp extends CommandOpMode {
 
 
 //        drive.setDefaultCommand(driveCommand);
-
     }
 }
